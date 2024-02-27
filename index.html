@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+    <!-- Replace the content tag with appropriate information -->
+    <meta name="description" content="EMO">
+    <meta property="og:title" content="EMO"/>
+    <meta property="og:description"
+          content="EMO: Emote Portrait Alive - Generating Expressive Portrait Videos with Audio2Video Diffusion Model under Weak Conditions"/>
+    <meta property="og:url" content="URL OF THE WEBSITE"/>
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+    <meta property="og:image" content="static/image/video_t1.png"/>
+    <meta property="og:image:width" content="2412"/>
+    <meta property="og:image:height" content="1394"/>
+
+
+    <meta name="twitter:title" content="EMO">
+    <meta name="twitter:description"
+          content="EMO: Emote Portrait Alive - Generating Expressive Portrait Videos with Audio2Video Diffusion Model under Weak Conditions">
+    <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+    <meta name="twitter:image" content="static/images/video_t1.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Keywords for your paper to be indexed by-->
+    <meta name="keywords" content="Image-to-Video">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <title>EMO</title>
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/bulma.min.css">
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="static/css/index.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script src="static/js/bulma-carousel.min.js"></script>
+    <script src="static/js/bulma-slider.min.js"></script>
+    <script src="static/js/index.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+    <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+            <a class="navbar-item" href=https://github.com/HumanAIGC>
+          <span class="icon">
+            <i class="fas fa-home"></i>
+          </span>
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More Research
+                </a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="https://humanaigc.github.io/animate-anyone/">
+                        AnimateAnyone
+                    </a>
+                    <a class="navbar-item" href="https://humanaigc.github.io/outfit-anyone/">
+                        OutfitAnyone
+                    </a>
+                    <a class="navbar-item" href="https://github.com/HumanAIGC/MaTe3D/">
+                        MaTe3D
+                    </a>
+                    <a class="navbar-item" href="https://humanaigc.github.io/vivid-talk/">
+                        VividTalk
+                    </a>
+                    <a class="navbar-item" href="https://tomguluson92.github.io/projects/cloth2tex/">
+                        Cloth2Tex
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <div class="columns is-centered">
+                <div class="column has-text-centered">
+                    <h1 class="title is-1 publication-title">EMO: Emote Portrait Alive - Generating Expressive Portrait Videos with Audio2Video Diffusion Model under Weak Conditions</h1>
+                    <div class="is-size-5 publication-authors">
+                        <!-- Paper authors -->
+                        <span class="author-block">
+                <a href="" target="_blank">Linrui Tian</a>,</span>
+                        <span class="author-block">
+                  <a href="" target="_blank">Qi Wang</a>,</span>
+                        <span class="author-block">
+                      <a href="https://dblp.org/pid/11/4046.html" target="_blank">Bang Zhang</a>,</span>
+                        <span class="author-block">
+                          <a href="https://scholar.google.com/citations?user=FJwtMf0AAAAJ&hl=zh-CN" target="_blank">Liefeng Bo</a>
+                  </span>
+                    </div>
+                    <div class="is-size-5 publication-authors">
+                        <span class="author-block">Institute for Intelligent Computing, Alibaba Group</span>
+                    </div>
+
+                    <div class="column has-text-centered">
+                        <div class="publication-links">
+                <span class="link-block">
+                  <a href="https://github.com/HumanAIGC/TalkingAnyone" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>GitHub</span>
+                  </a>
+                </span>
+                            <span class="link-block">
+                  <a href="https://arxiv.org/pdf/test.pdf" target="_blank"
+                     class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Teaser video-->
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-vcentered is-centered">
+
+
+
+            <div class="column">
+                <video class="video-player" poster="" id="tree1" controls>
+                    <source src="content/video/赫本16_9.mp4" type="video/mp4">
+                </video>
+                <div class="content has-text-justified">
+                    <p style="font-size: 1.2em;">
+                        Character: Audrey Kathleen Hepburn-Ruston<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=1dl-ooknk1U" target="_blank">Ed Sheeran -
+                        Perfect. Covered by Samantha Harvey</a>
+                    </p>
+                </div>
+            </div>
+            <div class="column">
+                <video class="video-player" poster="" id="tree2" controls>
+                    <source src="content/video/16比9视频结果/talk_sora.mp4" type="video/mp4">
+                </video>
+                <div class="content has-text-justified">
+                    <p style="font-size: 1.2em;">
+                        Character: <a href="https://openai.com/sora" target="_blank">AI Lady from SORA</a><br>
+                        Vocal Source: <a href="www.youtube.com/watch?v=KpWNCQnHg20" target="_blank">Where We Go From
+                        Here with OpenAI's Mira Murati</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- End teaser video -->
+
+<!-- Paper abstract -->
+<section class="section hero is-light">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="content/images/framework/intro.png" alt="MY ALT TEXT" style="width: 80%; height: 80%;"/>
+                </div>
+                <div class="content has-text-justified">
+                    <p style="font-size: 1.2em;">
+                        We proposed EMO, an expressive audio-driven portrait-video generation framework.
+                        Input a single reference image and the vocal audio, e.g. talking and singing, our method can
+                        generate vocal avatar videos with expressive facial expressions, and various head poses,
+                        meanwhile, we can generate videos with any duration depending on the length of input video.
+                    </p>
+                </div>
+            </div>
+        </div>
+                                            <video class="video-player" poster="" id="tree1" controls>
+                    <source src="content/video/main_page.mp4" type="video/mp4">
+                </video>
+    </div>
+</section>
+
+<!-- Method -->
+<section class="hero is-small">
+    <div class="hero-body">
+        <div class="container is-max-desktop">
+            <h2 class="title is-2">Method</h2>
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img src="content/images/framework/pipeline.png" alt="MY ALT TEXT" style="width: 70%; height: 70%;"/>
+            </div>
+            <div class="item">
+                <h2 class="content has-text-justified">
+                    <p style="font-size: 1.2em;">
+Overview of the proposed method. Our framework is mainly constituted with two stages.
+                        In the initial stage, termed Frames Encoding, the ReferenceNet is deployed to extract features from the reference image and motion frames.
+                        Subsequently, during the Diffusion Process stage, a pretrained audio encoder processes the audio embedding.
+                        The facial region mask is integrated with multi-frame noise to govern the generation of facial imagery.
+                        This is followed by the employment of the Backbone Network to facilitate the denoising operation.
+                        Within the Backbone Network, two forms of attention mechanisms are applied: Reference-Attention and Audio-Attention.
+                        These mechanisms are essential for preserving the character's identity and modulating the character's movements, respectively.
+                        Additionally, Temporal Modules are utilized to manipulate the temporal dimension, and adjust the velocity of motion.
+                    </p>
+                </h2>
+                <div class="item">
+                </div>
+            </div>
+</section>
+<!-- End Method -->
+
+<style>
+    .gifImage:hover {
+        opacity: 0.8;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        transform: scale(1.1);
+    }
+
+    .paused {
+        animation-play-state: paused;
+    }
+
+</style>
+
+
+<head>
+    <title>place gif</title>
+    <style>
+        .gif-container {
+            display: flex;
+        }
+
+        .gif {
+            width: 660px; /* 设置 GIF 的宽度 */
+            height: 400px; /* 设置 GIF 的高度 */
+        }
+    </style>
+</head>
+
+
+<section class="hero is-small is-light">
+    <div class="hero-body">
+        <div class="container">
+            <h2 class="title is-3">Various Generated Videos</h2>
+            <br></br>
+            <h3 class="title is-3">Singing</h3>
+            <h2 class="content has-text-justified">
+                <p style="font-size: 1.4em;"></p>
+            </h2>
+
+            <!-- Different garments -->
+            <div style="display: flex; justify-content: center;align-items: center; height: 80px;">
+                <h3 class="title is-4"> Make Portrait Sing</h3>
+            </div>
+
+            <style>
+                .video-item {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .video-item column {
+                    width: 48%; /* 各占一半，留下一些间隔 */
+                    object-fit: cover; /* 保持图片纵横比 */
+                    margin: 0 10px;
+                }
+
+
+                .item-gif-container {
+                    width: 48%; /* 占据父元素的80%宽度 */
+                    margin: auto; /* 水平方向上创建相同的空白 */
+                }
+            </style>
+
+            <style>
+                .video-container {
+                    display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    /*margin: 0 10px;*/
+                    width: 100%;
+                }
+
+                .description {
+                    font-size: 1.2em;
+                    text-align: justify;
+                }
+
+                .content-description {
+                    margin-top: 10px; /* Add some space above the description */
+                }
+            </style>
+            <style>
+                .caption {
+                    margin-top: 8px; /* Space between the video and its caption */
+                }
+            </style>
+
+            <div class="content has-text-justified">
+                <p style="font-size: 1.2em;">
+                    Input a single character image and a vocal audio, such as singing,
+                    our method can generate vocal avatar videos with expressive facial expressions, and various head
+                    poses, meanwhile, we can generate videos with any duration depending on the length of input audio.
+                    Our method can also
+                    persist the characters' identifies in a long duration.
+                </p>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_mola.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI Mona Lisa generated by dreamshaper XL<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=0X4XGrK_PwM" target="_blank"> Miley Cyrus
+                        - Flowers. Covered by YUQI</a>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_sora.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: <a href="https://openai.com/sora" target="_blank">AI Lady from SORA</a><br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=oygrmJFKYZY" target="_blank">Dua Lipa -
+                        Don't Start Now</a>
+                    </p>
+                </div>
+            </div>
+            <!--不同语言，不同style-->
+            <div style="display: flex; justify-content: center;align-items: center; height: 80px;">
+                <h3 class="title is-4"> Different Language & Portrait Style</h3>
+            </div>
+
+            <div class="content has-text-justified">
+                <p style="font-size: 1.2em;">
+                    Our method supports songs in various languages and brings diverse portrait styles to life.
+                    It intuitively recognizes tonal variations in the audio, enabling the generation of dynamic,
+                    expression-rich avatars.
+                </p>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_melody.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI Girl generated by ChilloutMix<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=O_T7PlgAh3MM" target="_blank">
+                        David Tao - Melody. Covered by NINGNING (mandarin)</a>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_call_silence.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI Ymir from AnyLora & Ymir Fritz Adult<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=UAuwzw_5JU4" target="_blank">
+                        『衝撃』Music Video【TVアニメ「進撃の巨人」The Final Season エンディングテーマ曲】 (Japanese)</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_zgr.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: Leslie Cheung Kwok Wing<br>
+                        Vocal Source: <a
+                            href="https://www.bilibili.com/video/BV1is4y1q7QC/?spm_id_from=333.337.search-card.all.click"
+                            target="_blank">
+                        Eason Chan - Unconditional. Covered by AI (Cantonese)</a>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_solo.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI girl generated by WildCardX-XL-Fusion<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=ITFPxH-p7-I" target="_blank">JENNIE -
+                        SOLO. Cover by Aiana (Korean)</a>
+                    </p>
+                </div>
+            </div>
+
+            <!--rap-->
+            <div style="display: flex; justify-content: center;align-items: center; height: 80px;">
+                <h3 class="title is-4"> Rapid Rhythm</h3>
+            </div>
+
+            <div class="content has-text-justified">
+                <p style="font-size: 1.2em;">
+                    The driven avatar can keep up with fast-paced rhythms,
+                    guaranteeing that even the swiftest lyrics are synchronized with expressive and dynamic
+                    character animations.
+                </p>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_god.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: Leonardo Wilhelm DiCaprio<br>
+                        Vocal Source: <a
+                            href="https://www.youtube.com/watch?v=WuKhh7n9eBM"
+                            target="_blank">
+                        EMINEM - GODZILLA (FT. JUICE WRLD) COVER</a>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/song_cxk.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: KUN KUN<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=XbGs_qK2PQA" target="_blank">
+                        Eminem - Rap God</a>
+                    </p>
+                </div>
+            </div>
+
+            <h3 class="title is-3">Talking</h3>
+            <h2 class="content has-text-justified">
+                <p style="font-size: 1.4em;"></p>
+            </h2>
+
+            <!-- Different garments -->
+            <div style="display: flex; justify-content: center;align-items: center; height: 80px;">
+                <h3 class="title is-4"> Talking With Different Characters</h3>
+            </div>
+
+            <div class="content has-text-justified">
+                <p style="font-size: 1.2em;">
+                    Our approach is not limited to processing audio inputs from singing, it can also accommodate spoken
+                    audio in various languages.
+                    Additionally, our method has the capability to animate portraits from bygone eras, paintings,
+                    and both 3D models and AI generated content, infusing them with lifelike motion and realism.
+                </p>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_hb.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: Audrey Kathleen Hepburn-Ruston<br>
+                        Vocal Source: Interview Clip
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_kara.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI Chloe: Detroit Become Human<br>
+                        Vocal Source: Interview Clip
+                    </p>
+                </div>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_mola.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: Mona Lisa<br>
+                        Vocal Source: <a href="https://www.youtube.com/watch?v=1t3hivvE_1M" target="_blank">
+                        Shakespeare's Monologue II As You Like It: Rosalind "Yes, one; and in this manner."</a>
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_yomir.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI Ymir from AnyLora & Ymir Fritz Adult<br>
+                        Vocal Source: NieR: Automata</a>
+                    </p>
+                </div>
+            </div>
+
+
+            <!-- Different garments -->
+            <div style="display: flex; justify-content: center;align-items: center; height: 80px;">
+                <h3 class="title is-4"> Cross-Actor Performance</h3>
+            </div>
+
+            <div class="content has-text-justified">
+                <p style="font-size: 1.2em;">
+                    Explore the potential applications of our method,
+                    which enables the portraits of movie characters delivering monologues or performances in different
+                    languages and styles.
+                    we can expanding the possibilities of character portrayal in multilingual and multicultural
+                    contexts.
+                </p>
+            </div>
+
+            <div class="video-item">
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_jocker.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: Joaquin Rafael Phoenix - The Jocker - 《Jocker 2019》 <br>
+                        Vocal Source: 《The Dark Knight》 2008
+                    </p>
+                </div>
+
+                <div class="column">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_gqq.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: SongWen Zhang - QiQiang Gao - 《The Knockout》<br>
+                        Vocal Source: <a
+                            href="https://www.bilibili.com/video/BV1qt4y1x7hm/?spm_id_from=333.788.recommend_more_video.2&vd_source=ded6237983227360158628832e785661"
+                            target="_blank">
+                        Online courses for legal exams</a>
+                    </p>
+                </div>
+            </div>
+
+                <div class="column" style="width:50%;">
+                    <video class="video-player" poster="" id="tree2" controls>
+                        <source src="content/video/16比9视频结果/talk_emotion.mp4" type="video/mp4">
+                    </video>
+                    <p class="caption">
+                        Character: AI girl generated by xxmix_9realisticSDXL <br>
+                        Vocal Source: <a
+                            href="https://www.tiktok.com/@itsjuli4_/video/6981924180497419522"
+                            target="_blank">Videos published by itsjuli4.
+                    </p>
+                </div>
+
+        </div>
+
+
+        <!--        <div style="display: flex; justify-content: center; align-items: center; height: 80px;">-->
+        <!--            <h3 class="title is-4">Chinese Song</h3>-->
+        <!--        </div>-->
+        <!--        <style>-->
+        <!--            .video-group {-->
+        <!--                display: flex;-->
+        <!--                justify-content: center;-->
+        <!--            }-->
+
+        <!--            .video-group video {-->
+        <!--                width: 48%; /* 各占一半，留下一些间隔 */-->
+        <!--                object-fit: cover; /* 保持图片纵横比 */-->
+        <!--            }-->
+        <!--        </style>-->
+        <!--        <div class="video-group">-->
+        <!--            <video poster="" id="tree" controls height="100%">-->
+        <!--                <source src="content/video/赫本16_9.mp4" type="video/mp4">-->
+        <!--            </video>-->
+        <!--        </div>-->
+
+        <br></br>
+        <!--        <h3 class="title is-4">Bizarre Fashion</h3>-->
+        <!--        <h2 class="content has-text-justified">-->
+        <!--          <p style="font-size: 1.4em;">Here we showcase our model's ability to handle a wide range of eccentric and unique clothing styles, dress them onto the models, and even create corresponding outfit combinations when necessary.</p>-->
+        <!--        </h2>-->
+        <!--        <div id="results-carousel44" class="carousel results-carousel">-->
+
+        <!--          <div class="item item-video1">-->
+        <!--            <img src="content/images/style/style1.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+        <!--  -->
+        <!--          <div class="item item-video1">-->
+        <!--            <img loading="lazy" src="content/images/style/style6.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video1">-->
+        <!--            <img loading="lazy" src="content/images/style/style3.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video1">-->
+        <!--            <img loading="lazy" src="content/images/style/style4.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video1">-->
+        <!--            <img loading="lazy" src="content/images/style/style5.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/style/style2.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+        <!--  -->
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/style/style8.jpg" height="900" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/style/style7.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/style/style9.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/style/style10.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <br></br>-->
+        <!--        &lt;!&ndash; End Different bodyshapes &ndash;&gt;-->
+        <!--        &lt;!&ndash; Different bodyshapes &ndash;&gt;-->
+        <!--        <h3 class="title is-4">Various Body Shapes</h3>-->
+        <!--        <h2 class="content has-text-justified">-->
+        <!--          <p style="font-size: 1.4em;">Our model demonstrates the ability to generalize to various body types, including those that are fit, curve and petite, -->
+        <!--            thereby catering to the try-on demands of individuals from all walks of life.</p>-->
+        <!--        </h2>-->
+        <!--        <div id="results-carousel22" class="carousel results-carousel">-->
+        <!--          <div class="item item-video1">-->
+        <!--            <img src="content/images/bs/3.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+        <!--  -->
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/bs/2.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/bs/1.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/bs/4.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+
+        <!--          <div class="item item-video2">-->
+        <!--            <img loading="lazy" src="content/images/bs/5.jpg" alt="MY ALT TEXT" />-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        <br></br>-->
+        <!--        &lt;!&ndash; End Different bodyshapes &ndash;&gt;-->
+        <!--     -->
+        <!--        &lt;!&ndash;  Anime &ndash;&gt;-->
+        <!--        <h3 class="title is-4">Anime</h3>-->
+        <!--        <h2 class="content has-text-justified">-->
+        <!--          <p style="font-size: 1.4em;">we demonstrate the powerful generalization ability of our model, which can support the creation of new animation characters.</p>-->
+        <!--        </h2>-->
+        <!--        <div id="results-carousel44" class="carousel results-carousel">-->
+        <!--          <div class="gif-container">-->
+        <!--            <img loading="lazy" src="content/gifs/1.gif" class="gif" height="600" />-->
+        <!--          </div>-->
+
+        <!--          <div class="gif-container">-->
+        <!--            <img loading="lazy" src="content/gifs/2.gif" class="gif" height="600" />-->
+        <!--          </div>-->
+        <!--        </div>-->
+        <!--        &lt;!&ndash;End  Anime &ndash;&gt;-->
+    </div>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <div class="content" style="text-align: center;">
+                    <p>
+                        This project is intended solely for academic research and effect demonstration.
+                    </p>
+
+                    <p>
+                        This page was built using the <a
+                            href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                            target="_blank">Template</a> which was adopted from the <a href="https://nerfies.github.io"
+                                                                                       target="_blank">Nerfies</a> project
+                        page.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="static/js/script.js"></script>
+<script>
+    // 获取所有视频元素
+    var videos = document.querySelectorAll('video');
+
+    // 为每个视频添加播放事件监听器
+    videos.forEach(function(video) {
+        video.addEventListener('play', function() {
+            // 当任何一个视频开始播放时，暂停其他所有视频
+            videos.forEach(function(otherVideo) {
+                if (otherVideo !== video) {
+                    otherVideo.pause();
+                }
+            });
+        }, false);
+    });
+</script>
+
+<script>
+    new BeforeAfter({
+        id: '#example1'
+    });
+    new BeforeAfter({
+        id: '#example2'
+    });
+    new BeforeAfter({
+        id: '#example3'
+    });
+    new BeforeAfter({
+        id: '#example4'
+    });
+    new BeforeAfter({
+        id: '#example6'
+    });
+    new BeforeAfter({
+        id: '#example7'
+    });
+
+</script>
+
+<script>
+    var gifImage = document.getElementById('gifImage');
+    var isPaused = false;
+
+    gifImage.addEventListener('mouseenter', function () {
+        gifImage.src = gifImage.src;
+        isPaused = true;
+    });
+
+    gifImage.addEventListener('mouseleave', function () {
+        if (isPaused) {
+            gifImage.src = gifImage.src;
+            isPaused = false;
+        }
+    });
+</script>
+
+<script>
+    bulmaCarousel.attach('#results-carousel11', {
+        slidesToScroll: 1,
+        slidesToShow: 2,
+        infinite: true,
+        autoplay: false,
+    });
+    bulmaCarousel.attach('#results-carousel22', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        infinite: true,
+        autoplay: false,
+    });
+    bulmaCarousel.attach('#results-carousel44', {
+        slidesToScroll: 1,
+        slidesToShow: 2,
+        infinite: false,
+        autoplay: false,
+    });
+</script>
+
+<script>
+    document.getElementById('gifImage3').src = 'content/gifs/Item.gif';
+    document.getElementById('gifImage1').src = 'content/gifs/s1.gif';
+    document.getElementById('gifImage2').src = 'content/gifs/s2.gif';
+
+    // 图片资源路径
+    const images = [
+        'content/teaser/t3.gif',
+        'content/teaser/t4.gif',
+        'content/teaser/t1.gif',
+        'content/teaser/t2.gif'
+    ];
+
+    // 获取要插入图片的div
+    const group1 = document.getElementById('group1');
+    const group2 = document.getElementById('group2');
+
+    // 创建并插入前两张图片
+    for (let i = 0; i < 2; i++) {
+        const img = document.createElement('img');
+        img.src = images[i];
+        img.loading = 'lazy';
+        img.alt = '图片' + (i + 1);
+        group1.appendChild(img);
+    }
+
+    // 创建并插入后两张图片
+    for (let i = 2; i < images.length; i++) {
+        const img = document.createElement('img');
+        img.src = images[i];
+        img.loading = 'lazy';
+        img.alt = '图片' + (i + 1);
+        group2.appendChild(img);
+    }
+
+</script>
+
+<!-- Statcounter tracking code -->
+
+<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+<!-- End of Statcounter Code -->
+<!-- Default Statcounter code for outfit-anyone
+https://humanaigc.github.io/outfit-anyone/ -->
+<script type="text/javascript">
+    var sc_project = 12948235;
+    var sc_invisible = 1;
+    var sc_security = "8cca28b8";
+</script>
+<script type="text/javascript"
+        src="https://www.statcounter.com/counter/counter.js" async></script>
+<noscript>
+    <div class="statcounter"><a title="Web Analytics"
+                                href="https://statcounter.com/" target="_blank"><img class="statcounter"
+                                                                                     src="https://c.statcounter.com/12948235/0/8cca28b8/1/"
+                                                                                     alt="Web Analytics"
+                                                                                     referrerPolicy="no-referrer-when-downgrade"></a>
+    </div>
+</noscript>
+<!-- End of Statcounter Code -->
+</body>
+
+
+</html>
