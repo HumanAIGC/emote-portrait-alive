@@ -25,6 +25,30 @@
     <!-- Keywords for your paper to be indexed by-->
     <meta name="keywords" content="Image-to-Video">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // 在 DOM 加载完成后立即弹出提示框
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                title: 'We have just released EMO2!',
+                text: "Jump to check it out?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Jump',
+                cancelButtonText: 'Continue Browsing',
+                customClass: {
+                    confirmButton: 'swal2-confirm-en',
+                    cancelButton: 'swal2-cancel-en'
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "https://humanaigc.github.io/emote-portrait-alive-2"; // 替换为目标 URL
+                } else {
+                    console.log("User chose to continue browsing.");
+                }
+            });
+        });
+    </script>
 
 
     <title>EMO</title>
